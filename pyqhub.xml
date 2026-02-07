@@ -1,1 +1,1307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <meta content='dark' name='color-scheme'/>
+    <b:include data='blog' name='all-head-content'/>
+    <title><data:blog.pageTitle/></title>
 
+    <b:skin><![CDATA[
+    /* === PyQHub Dark Theme Variables === */
+    /* Variable definitions
+    <Variable name="body.background" description="Body Background" type="background"
+      color="#0d1117" default="#0d1117" value="$(color) none repeat scroll top left"/>
+    <Variable name="body.text.color" description="Body Text Color" type="color" default="#c9d1d9" value="#c9d1d9"/>
+    <Variable name="body.text.font" description="Body Text Font" type="font" default="normal normal 15px 'Inter', 'Segoe UI', Arial, sans-serif" value="normal normal 15px 'Inter', 'Segoe UI', Arial, sans-serif"/>
+    <Variable name="header.background.color" description="Header Background" type="color" default="#161b22" value="#161b22"/>
+    <Variable name="header.text.color" description="Header Text Color" type="color" default="#58a6ff" value="#58a6ff"/>
+    <Variable name="link.color" description="Link Color" type="color" default="#58a6ff" value="#58a6ff"/>
+    <Variable name="link.hover.color" description="Link Hover Color" type="color" default="#79c0ff" value="#79c0ff"/>
+    <Variable name="sidebar.background.color" description="Sidebar Background" type="color" default="#161b22" value="#161b22"/>
+    <Variable name="footer.background.color" description="Footer Background" type="color" default="#161b22" value="#161b22"/>
+    <Variable name="post.title.color" description="Post Title Color" type="color" default="#58a6ff" value="#58a6ff"/>
+    <Variable name="card.background" description="Card Background" type="color" default="#161b22" value="#161b22"/>
+    <Variable name="border.color" description="Border Color" type="color" default="#30363d" value="#30363d"/>
+    <Variable name="accent.color" description="Accent Color" type="color" default="#1f6feb" value="#1f6feb"/>
+    <Variable name="meta.text.color" description="Meta Text Color" type="color" default="#8b949e" value="#8b949e"/>
+    */
+
+    /* === CSS Reset === */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* === Base Styles === */
+    body {
+      background: $(body.background.color);
+      color: $(body.text.color);
+      font: $(body.text.font);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: $(link.color);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: $(link.hover.color);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #e6edf3;
+      line-height: 1.3;
+      margin-bottom: 0.5em;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    /* === Layout === */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .main-wrapper {
+      display: flex;
+      gap: 30px;
+      padding: 30px 0;
+    }
+
+    .content-area {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .sidebar-wrapper {
+      width: 320px;
+      flex-shrink: 0;
+    }
+
+    /* === Header === */
+    .header-wrapper {
+      background: $(header.background.color);
+      border-bottom: 1px solid $(border.color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+    }
+
+    .site-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .site-logo .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: $(accent.color);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .site-title a {
+      font-size: 24px;
+      font-weight: 700;
+      color: $(header.text.color);
+    }
+
+    .site-description {
+      font-size: 12px;
+      color: $(meta.text.color);
+      margin-top: 2px;
+    }
+
+    /* === Navigation === */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-menu a {
+      color: $(body.text.color);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-menu a:hover {
+      background: rgba(88, 166, 255, 0.1);
+      color: $(link.color);
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: $(body.text.color);
+      font-size: 24px;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    /* === Breadcrumb === */
+    .breadcrumb {
+      padding: 12px 0;
+      font-size: 13px;
+      color: $(meta.text.color);
+    }
+    .breadcrumb a {
+      color: $(meta.text.color);
+    }
+    .breadcrumb a:hover {
+      color: $(link.color);
+    }
+
+    /* === Post Cards (Index Page) === */
+    .post-card {
+      background: $(card.background);
+      border: 1px solid $(border.color);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s ease;
+    }
+
+    .post-card:hover {
+      border-color: $(accent.color);
+    }
+
+    .post-card .post-category {
+      display: inline-block;
+      background: rgba(31, 111, 235, 0.15);
+      color: $(link.color);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .post-card .post-title {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .post-card .post-title a {
+      color: $(post.title.color);
+    }
+
+    .post-card .post-title a:hover {
+      color: $(link.hover.color);
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 13px;
+      color: $(meta.text.color);
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .post-meta .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .post-snippet {
+      color: $(meta.text.color);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .read-more-btn {
+      display: inline-block;
+      background: $(accent.color);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .read-more-btn:hover {
+      background: #388bfd;
+      color: #fff;
+    }
+
+    /* === Post Page (Item Page) === */
+    .post-full {
+      background: $(card.background);
+      border: 1px solid $(border.color);
+      border-radius: 10px;
+      padding: 35px;
+    }
+
+    .post-full .post-title {
+      font-size: 28px;
+      color: #e6edf3;
+      margin-bottom: 15px;
+    }
+
+    .post-full .post-body {
+      font-size: 16px;
+      line-height: 1.8;
+      color: $(body.text.color);
+    }
+
+    .post-full .post-body h2 {
+      margin-top: 1.5em;
+      font-size: 22px;
+      border-bottom: 1px solid $(border.color);
+      padding-bottom: 8px;
+    }
+
+    .post-full .post-body h3 {
+      margin-top: 1.3em;
+      font-size: 18px;
+    }
+
+    .post-full .post-body p {
+      margin-bottom: 1em;
+    }
+
+    .post-full .post-body ul,
+    .post-full .post-body ol {
+      margin: 1em 0;
+      padding-left: 2em;
+    }
+
+    .post-full .post-body ul {
+      list-style: disc;
+    }
+
+    .post-full .post-body ol {
+      list-style: decimal;
+    }
+
+    .post-full .post-body li {
+      margin-bottom: 0.4em;
+    }
+
+    .post-full .post-body blockquote {
+      border-left: 4px solid $(accent.color);
+      padding: 10px 20px;
+      margin: 1em 0;
+      background: rgba(31, 111, 235, 0.08);
+      border-radius: 0 6px 6px 0;
+      color: $(meta.text.color);
+    }
+
+    .post-full .post-body pre,
+    .post-full .post-body code {
+      background: #0d1117;
+      border: 1px solid $(border.color);
+      border-radius: 6px;
+      font-family: 'Fira Code', 'Consolas', monospace;
+      font-size: 14px;
+    }
+
+    .post-full .post-body pre {
+      padding: 16px;
+      overflow-x: auto;
+      margin: 1em 0;
+    }
+
+    .post-full .post-body code {
+      padding: 2px 6px;
+      border: none;
+    }
+
+    .post-full .post-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+    }
+
+    .post-full .post-body th,
+    .post-full .post-body td {
+      border: 1px solid $(border.color);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .post-full .post-body th {
+      background: rgba(31, 111, 235, 0.1);
+      font-weight: 600;
+    }
+
+    .post-full .post-body img {
+      border-radius: 8px;
+      margin: 1em 0;
+    }
+
+    /* === Post Labels === */
+    .post-labels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid $(border.color);
+    }
+
+    .post-labels a {
+      background: rgba(88, 166, 255, 0.1);
+      color: $(link.color);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid rgba(88, 166, 255, 0.2);
+    }
+
+    .post-labels a:hover {
+      background: rgba(88, 166, 255, 0.2);
+    }
+
+    /* === Share Buttons === */
+    .share-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid $(border.color);
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #fff;
+      transition: opacity 0.2s ease;
+    }
+
+    .share-btn:hover {
+      opacity: 0.85;
+      color: #fff;
+    }
+
+    .share-btn.twitter { background: #1da1f2; }
+    .share-btn.facebook { background: #1877f2; }
+    .share-btn.whatsapp { background: #25d366; }
+    .share-btn.telegram { background: #0088cc; }
+
+    /* === Post Navigation === */
+    .post-nav {
+      display: flex;
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    .post-nav a {
+      flex: 1;
+      background: $(card.background);
+      border: 1px solid $(border.color);
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.2s ease;
+    }
+
+    .post-nav a:hover {
+      border-color: $(accent.color);
+    }
+
+    .post-nav .nav-label {
+      font-size: 12px;
+      color: $(meta.text.color);
+      margin-bottom: 5px;
+    }
+
+    /* === Comments === */
+    .comments-wrapper {
+      background: $(card.background);
+      border: 1px solid $(border.color);
+      border-radius: 10px;
+      padding: 25px;
+      margin-top: 25px;
+    }
+
+    .comments-title {
+      font-size: 18px;
+      color: #e6edf3;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid $(border.color);
+    }
+
+    .comment {
+      padding: 15px 0;
+      border-bottom: 1px solid $(border.color);
+    }
+
+    .comment:last-child {
+      border-bottom: none;
+    }
+
+    .comment .comment-author {
+      font-weight: 600;
+      color: $(link.color);
+      font-size: 14px;
+    }
+
+    .comment .comment-date {
+      font-size: 12px;
+      color: $(meta.text.color);
+    }
+
+    .comment .comment-body {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    /* === Sidebar === */
+    .sidebar-widget {
+      background: $(sidebar.background.color);
+      border: 1px solid $(border.color);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar-widget .widget-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #e6edf3;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid $(accent.color);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Search Widget */
+    .search-widget .search-form {
+      display: flex;
+    }
+
+    .search-widget .search-input {
+      flex: 1;
+      background: #0d1117;
+      border: 1px solid $(border.color);
+      border-right: none;
+      border-radius: 6px 0 0 6px;
+      padding: 10px 14px;
+      color: $(body.text.color);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .search-widget .search-input:focus {
+      border-color: $(accent.color);
+    }
+
+    .search-widget .search-input::placeholder {
+      color: $(meta.text.color);
+    }
+
+    .search-widget .search-button {
+      background: $(accent.color);
+      border: 1px solid $(accent.color);
+      border-radius: 0 6px 6px 0;
+      padding: 10px 16px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s ease;
+    }
+
+    .search-widget .search-button:hover {
+      background: #388bfd;
+    }
+
+    /* Labels Widget */
+    .label-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .label-cloud a {
+      display: inline-block;
+      background: rgba(88, 166, 255, 0.08);
+      color: $(link.color);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      border: 1px solid $(border.color);
+      transition: all 0.2s ease;
+    }
+
+    .label-cloud a:hover {
+      background: rgba(88, 166, 255, 0.15);
+      border-color: $(accent.color);
+    }
+
+    .label-cloud .label-count {
+      font-size: 11px;
+      color: $(meta.text.color);
+      margin-left: 3px;
+    }
+
+    /* Archive Widget */
+    .archive-list li {
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+    }
+
+    .archive-list li:last-child {
+      border-bottom: none;
+    }
+
+    .archive-list a {
+      display: flex;
+      justify-content: space-between;
+      color: $(body.text.color);
+      font-size: 14px;
+    }
+
+    .archive-list a:hover {
+      color: $(link.color);
+    }
+
+    /* Popular Posts Widget */
+    .popular-post-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+    }
+
+    .popular-post-item:last-child {
+      border-bottom: none;
+    }
+
+    .popular-post-item .pop-thumb {
+      width: 70px;
+      height: 70px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .popular-post-item .pop-title {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .popular-post-item .pop-title a {
+      color: $(body.text.color);
+    }
+
+    .popular-post-item .pop-title a:hover {
+      color: $(link.color);
+    }
+
+    .popular-post-item .pop-date {
+      font-size: 12px;
+      color: $(meta.text.color);
+      margin-top: 4px;
+    }
+
+    /* About Widget */
+    .about-widget .about-text {
+      font-size: 14px;
+      color: $(meta.text.color);
+      line-height: 1.6;
+    }
+
+    /* === Pagination === */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      padding: 20px 0;
+    }
+
+    .pagination a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: $(card.background);
+      color: $(link.color);
+      border: 1px solid $(border.color);
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .pagination a:hover {
+      background: rgba(88, 166, 255, 0.1);
+      border-color: $(accent.color);
+    }
+
+    /* === Footer === */
+    .footer-wrapper {
+      background: $(footer.background.color);
+      border-top: 1px solid $(border.color);
+      margin-top: 40px;
+    }
+
+    .footer-inner {
+      padding: 40px 0 20px;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-col .footer-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: #e6edf3;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-col ul li a {
+      color: $(meta.text.color);
+      font-size: 14px;
+    }
+
+    .footer-col ul li a:hover {
+      color: $(link.color);
+    }
+
+    .footer-col .footer-description {
+      color: $(meta.text.color);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 20px 0;
+      border-top: 1px solid $(border.color);
+      font-size: 13px;
+      color: $(meta.text.color);
+    }
+
+    /* === Back to Top === */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 42px;
+      height: 42px;
+      background: $(accent.color);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: background 0.2s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .back-to-top:hover {
+      background: #388bfd;
+    }
+
+    .back-to-top.visible {
+      display: flex;
+    }
+
+    /* === Error Page === */
+    .error-page {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .error-page .error-code {
+      font-size: 100px;
+      font-weight: 700;
+      color: $(accent.color);
+    }
+
+    .error-page .error-message {
+      font-size: 20px;
+      color: $(meta.text.color);
+      margin-bottom: 20px;
+    }
+
+    /* === Loading Skeleton === */
+    .skeleton {
+      background: linear-gradient(90deg, #161b22 25%, #1c2129 50%, #161b22 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 6px;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* === Responsive Design === */
+    @media (max-width: 1024px) {
+      .main-wrapper {
+        flex-direction: column;
+      }
+      .sidebar-wrapper {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-wrap: wrap;
+      }
+      .nav-menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        padding: 10px 0;
+        border-top: 1px solid $(border.color);
+      }
+      .nav-menu.active {
+        display: flex;
+      }
+      .mobile-menu-toggle {
+        display: block;
+      }
+      .post-full {
+        padding: 20px;
+      }
+      .post-full .post-title {
+        font-size: 22px;
+      }
+      .footer-columns {
+        grid-template-columns: 1fr;
+      }
+      .post-nav {
+        flex-direction: column;
+      }
+      .share-buttons {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 15px;
+      }
+      .post-card {
+        padding: 18px;
+      }
+      .post-card .post-title {
+        font-size: 17px;
+      }
+      .header-inner {
+        padding: 12px 0;
+      }
+      .site-title a {
+        font-size: 20px;
+      }
+    }
+    ]]></b:skin>
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap' rel='stylesheet'/>
+  </head>
+
+  <body>
+    <!-- Back to Top Button -->
+    <button class='back-to-top' id='backToTop' onclick='window.scrollTo({top:0,behavior:&quot;smooth&quot;})' title='Back to Top'>&#8679;</button>
+
+    <!-- ===== HEADER ===== -->
+    <header class='header-wrapper'>
+      <div class='container'>
+        <div class='header-inner'>
+
+          <div class='site-logo'>
+            <div class='logo-icon'>PQ</div>
+            <div>
+              <div class='site-title'>
+                <a expr:href='data:blog.homepageUrl'><data:blog.title/></a>
+              </div>
+              <div class='site-description'>Previous Year Questions &amp; Study Resources</div>
+            </div>
+          </div>
+
+          <button class='mobile-menu-toggle' id='menuToggle' onclick='document.getElementById(&quot;navMenu&quot;).classList.toggle(&quot;active&quot;)'>&#9776;</button>
+
+          <!-- Navigation -->
+          <nav class='nav-menu' id='navMenu'>
+            <b:section class='header-nav' id='header-nav' maxwidgets='1' showaddelement='yes'>
+              <b:widget id='PageList1' locked='false' title='Pages' type='PageList' visible='true'>
+                <b:includable id='main'>
+                  <b:if cond='data:title != &quot;&quot;'>
+                    <h2><data:title/></h2>
+                  </b:if>
+                  <div class='widget-content'>
+                    <b:if cond='data:mobile == &quot;false&quot; or data:mobile == &quot;true&quot;'>
+                      <ul>
+                        <b:loop values='data:links' var='link'>
+                          <li><a expr:href='data:link.href'><data:link.title/></a></li>
+                        </b:loop>
+                      </ul>
+                    </b:if>
+                  </div>
+                </b:includable>
+              </b:widget>
+            </b:section>
+          </nav>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class='container'>
+      <div class='main-wrapper'>
+
+        <!-- Content Area -->
+        <div class='content-area'>
+          <b:section class='main-content' id='main-content' maxwidgets='1' showaddelement='yes'>
+            <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' visible='true'>
+              <b:includable id='main' var='top'>
+                <b:if cond='data:mobile == &quot;false&quot; or data:mobile == &quot;true&quot;'>
+
+                  <!-- === INDEX / LABEL / SEARCH PAGE === -->
+                  <b:if cond='data:blog.pageType == &quot;index&quot; or data:blog.pageType == &quot;archive&quot;'>
+                    <div class='blog-posts-index'>
+                      <b:loop values='data:posts' var='post'>
+                        <article class='post-card'>
+                          <!-- Category label -->
+                          <b:if cond='data:post.labels'>
+                            <b:loop values='data:post.labels' var='label'>
+                              <b:if cond='data:label.isLast == &quot;true&quot;'>
+                                <a class='post-category' expr:href='data:label.url'><data:label.name/></a>
+                              </b:if>
+                            </b:loop>
+                          </b:if>
+
+                          <!-- Post Title -->
+                          <h2 class='post-title'>
+                            <a expr:href='data:post.url'><data:post.title/></a>
+                          </h2>
+
+                          <!-- Post Meta -->
+                          <div class='post-meta'>
+                            <span class='meta-item'>&#128197; <data:post.dateHeader/></span>
+                            <b:if cond='data:post.author'>
+                              <span class='meta-item'>&#9998; <data:post.author/></span>
+                            </b:if>
+                            <b:if cond='data:post.numComments'>
+                              <span class='meta-item'>&#128172; <data:post.numComments/> Comments</span>
+                            </b:if>
+                          </div>
+
+                          <!-- Post Snippet -->
+                          <div class='post-snippet'>
+                            <data:post.snippet/>
+                          </div>
+
+                          <!-- Read More -->
+                          <a class='read-more-btn' expr:href='data:post.url'>Read More &#8594;</a>
+                        </article>
+                      </b:loop>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class='pagination'>
+                      <b:if cond='data:newerPageUrl'>
+                        <a class='newer-posts' expr:href='data:newerPageUrl'>&#8592; Newer Posts</a>
+                      </b:if>
+                      <b:if cond='data:olderPageUrl'>
+                        <a class='older-posts' expr:href='data:olderPageUrl'>Older Posts &#8594;</a>
+                      </b:if>
+                    </div>
+                  </b:if>
+
+                  <!-- === ITEM PAGE (Single Post) === -->
+                  <b:if cond='data:blog.pageType == &quot;item&quot;'>
+                    <b:loop values='data:posts' var='post'>
+                      <article class='post-full'>
+                        <!-- Post Title -->
+                        <h1 class='post-title'><data:post.title/></h1>
+
+                        <!-- Post Meta -->
+                        <div class='post-meta'>
+                          <span class='meta-item'>&#128197; <data:post.dateHeader/></span>
+                          <b:if cond='data:post.author'>
+                            <span class='meta-item'>&#9998; <data:post.author/></span>
+                          </b:if>
+                          <b:if cond='data:post.numComments'>
+                            <span class='meta-item'>&#128172; <data:post.numComments/> Comments</span>
+                          </b:if>
+                        </div>
+
+                        <!-- Post Body -->
+                        <div class='post-body'>
+                          <data:post.body/>
+                        </div>
+
+                        <!-- Post Labels -->
+                        <b:if cond='data:post.labels'>
+                          <div class='post-labels'>
+                            <b:loop values='data:post.labels' var='label'>
+                              <a expr:href='data:label.url'><data:label.name/></a>
+                            </b:loop>
+                          </div>
+                        </b:if>
+
+                        <!-- Share Buttons -->
+                        <div class='share-buttons'>
+                          <a class='share-btn twitter' expr:href='&quot;https://twitter.com/intent/tweet?url=&quot; + data:post.url + &quot;&amp;text=&quot; + data:post.title' rel='nofollow noopener' target='_blank'>Twitter</a>
+                          <a class='share-btn facebook' expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url' rel='nofollow noopener' target='_blank'>Facebook</a>
+                          <a class='share-btn whatsapp' expr:href='&quot;https://api.whatsapp.com/send?text=&quot; + data:post.title + &quot; &quot; + data:post.url' rel='nofollow noopener' target='_blank'>WhatsApp</a>
+                          <a class='share-btn telegram' expr:href='&quot;https://t.me/share/url?url=&quot; + data:post.url + &quot;&amp;text=&quot; + data:post.title' rel='nofollow noopener' target='_blank'>Telegram</a>
+                        </div>
+                      </article>
+
+                      <!-- Post Navigation (Newer / Older) -->
+                      <div class='post-nav'>
+                        <b:if cond='data:newerPageUrl'>
+                          <a expr:href='data:newerPageUrl'>
+                            <div class='nav-label'>&#8592; Newer Post</div>
+                            <span>Next Article</span>
+                          </a>
+                        </b:if>
+                        <b:if cond='data:olderPageUrl'>
+                          <a expr:href='data:olderPageUrl'>
+                            <div class='nav-label'>Older Post &#8594;</div>
+                            <span>Previous Article</span>
+                          </a>
+                        </b:if>
+                      </div>
+
+                      <!-- Comments Section -->
+                      <div class='comments-wrapper'>
+                        <h3 class='comments-title'>Comments</h3>
+                        <div class='comments-block'>
+                          <b:if cond='data:post.allowComments'>
+                            <b:include data='post' name='comments'/>
+                          </b:if>
+                        </div>
+                      </div>
+                    </b:loop>
+                  </b:if>
+
+                  <!-- === STATIC PAGE === -->
+                  <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
+                    <b:loop values='data:posts' var='post'>
+                      <article class='post-full'>
+                        <h1 class='post-title'><data:post.title/></h1>
+                        <div class='post-body'>
+                          <data:post.body/>
+                        </div>
+                        <b:if cond='data:post.allowComments'>
+                          <div class='comments-wrapper'>
+                            <h3 class='comments-title'>Comments</h3>
+                            <b:include data='post' name='comments'/>
+                          </div>
+                        </b:if>
+                      </article>
+                    </b:loop>
+                  </b:if>
+
+                  <!-- === ERROR PAGE === -->
+                  <b:if cond='data:blog.pageType == &quot;error_page&quot;'>
+                    <div class='error-page'>
+                      <div class='error-code'>404</div>
+                      <div class='error-message'>Page Not Found</div>
+                      <p>The page you are looking for might have been removed or is temporarily unavailable.</p>
+                      <a class='read-more-btn' expr:href='data:blog.homepageUrl' style='margin-top:20px'>&#8592; Go Home</a>
+                    </div>
+                  </b:if>
+
+                </b:if>
+              </b:includable>
+
+              <!-- Comments includable -->
+              <b:includable id='comments' var='post'>
+                <div class='comments-section' id='comments'>
+                  <b:if cond='data:post.embedCommentForm'>
+                    <b:include data='post' name='comment-form'/>
+                  <b:else/>
+                    <b:if cond='data:post.allowNewComments'>
+                      <a expr:href='data:post.addCommentUrl' rel='nofollow'>Post a Comment</a>
+                    </b:if>
+                  </b:if>
+                </div>
+              </b:includable>
+
+              <!-- Comment form includable -->
+              <b:includable id='comment-form' var='post'>
+                <div class='comment-form'>
+                  <a name='comment-form'/>
+                  <b:if cond='data:mobile'>
+                    <p>Use the desktop version to leave a comment.</p>
+                  <b:else/>
+                    <iframe allowtransparency='true' class='blogger-iframe-color498' frameborder='0' height='310' id='comment-editor' name='comment-editor' src='' width='100%'/>
+                    <data:post.cmtfpIframe/>
+                    <script type='text/javascript'>
+                      BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
+                    </script>
+                  </b:if>
+                </div>
+              </b:includable>
+
+              <!-- Pager includable for backward compat -->
+              <b:includable id='nextprev'>
+                <div class='pagination'>
+                  <b:if cond='data:newerPageUrl'>
+                    <a class='newer-posts' expr:href='data:newerPageUrl'>&#8592; Newer Posts</a>
+                  </b:if>
+                  <b:if cond='data:olderPageUrl'>
+                    <a class='older-posts' expr:href='data:olderPageUrl'>Older Posts &#8594;</a>
+                  </b:if>
+                </div>
+              </b:includable>
+
+              <!-- Post timestamp includable -->
+              <b:includable id='post' var='post'>
+                <!-- used internally by Blogger -->
+              </b:includable>
+
+              <!-- Status message (search/label results) -->
+              <b:includable id='status-message'>
+                <b:if cond='data:navMessage'>
+                  <div class='breadcrumb'>
+                    <data:navMessage/>
+                  </div>
+                </b:if>
+              </b:includable>
+
+            </b:widget>
+          </b:section>
+        </div>
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class='sidebar-wrapper'>
+          <!-- Search Widget -->
+          <b:section class='sidebar' id='sidebar' maxwidgets='10' showaddelement='yes'>
+
+            <b:widget id='CustomSearch1' locked='false' title='Search PyQHub' type='CustomSearch' visible='true'>
+              <b:includable id='main'>
+                <div class='sidebar-widget search-widget'>
+                  <h3 class='widget-title'><data:title/></h3>
+                  <form class='search-form' expr:action='data:blog.searchUrl'>
+                    <input class='search-input' name='q' placeholder='Search questions, subjects...' type='text'/>
+                    <button class='search-button' type='submit'>&#128269;</button>
+                  </form>
+                </div>
+              </b:includable>
+            </b:widget>
+
+            <!-- About Widget -->
+            <b:widget id='Text1' locked='false' title='About PyQHub' type='Text' visible='true'>
+              <b:includable id='main'>
+                <div class='sidebar-widget about-widget'>
+                  <h3 class='widget-title'><data:title/></h3>
+                  <div class='about-text'>
+                    <data:content/>
+                  </div>
+                </div>
+              </b:includable>
+            </b:widget>
+
+            <!-- Labels Widget -->
+            <b:widget id='Label1' locked='false' title='Subjects' type='Label' visible='true'>
+              <b:includable id='main'>
+                <div class='sidebar-widget'>
+                  <h3 class='widget-title'><data:title/></h3>
+                  <div class='label-cloud'>
+                    <b:loop values='data:labels' var='label'>
+                      <a expr:href='data:label.url'>
+                        <data:label.name/>
+                        <span class='label-count'>(<data:label.count/>)</span>
+                      </a>
+                    </b:loop>
+                  </div>
+                </div>
+              </b:includable>
+            </b:widget>
+
+            <!-- Archive Widget -->
+            <b:widget id='BlogArchive1' locked='false' title='Archive' type='BlogArchive' visible='true'>
+              <b:includable id='main'>
+                <div class='sidebar-widget'>
+                  <h3 class='widget-title'><data:title/></h3>
+                  <div class='archive-list'>
+                    <b:include data='data' name='flat'/>
+                  </div>
+                </div>
+              </b:includable>
+              <b:includable id='flat' var='data'>
+                <ul>
+                  <b:loop values='data:data' var='i'>
+                    <li>
+                      <a expr:href='data:i.url'>
+                        <span><data:i.name/></span>
+                        <span>(<data:i.post-count/>)</span>
+                      </a>
+                    </li>
+                  </b:loop>
+                </ul>
+              </b:includable>
+              <b:includable id='hierarchy' var='data'>
+                <!-- hierarchy view placeholder -->
+              </b:includable>
+            </b:widget>
+
+            <!-- Popular Posts Widget -->
+            <b:widget id='PopularPosts1' locked='false' title='Popular Questions' type='PopularPosts' visible='true'>
+              <b:includable id='main'>
+                <div class='sidebar-widget'>
+                  <h3 class='widget-title'><data:title/></h3>
+                  <div class='popular-posts-list'>
+                    <b:loop values='data:posts' var='post'>
+                      <div class='popular-post-item'>
+                        <b:if cond='data:post.thumbnail'>
+                          <img class='pop-thumb' expr:alt='data:post.title' expr:src='data:post.thumbnail'/>
+                        </b:if>
+                        <div>
+                          <div class='pop-title'>
+                            <a expr:href='data:post.href'><data:post.title/></a>
+                          </div>
+                        </div>
+                      </div>
+                    </b:loop>
+                  </div>
+                </div>
+              </b:includable>
+            </b:widget>
+
+          </b:section>
+        </aside>
+
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class='footer-wrapper'>
+      <div class='container'>
+        <div class='footer-inner'>
+          <div class='footer-columns'>
+
+            <div class='footer-col'>
+              <h4 class='footer-heading'>PyQHub</h4>
+              <p class='footer-description'>Your trusted source for previous year questions, study materials, and exam preparation resources. Ace your exams with PyQHub.</p>
+            </div>
+
+            <div class='footer-col'>
+              <h4 class='footer-heading'>Quick Links</h4>
+              <b:section class='footer-links' id='footer-links' maxwidgets='1' showaddelement='yes'>
+                <b:widget id='LinkList1' locked='false' title='Footer Links' type='LinkList' visible='true'>
+                  <b:includable id='main'>
+                    <ul>
+                      <b:loop values='data:links' var='link'>
+                        <li><a expr:href='data:link.target'><data:link.name/></a></li>
+                      </b:loop>
+                    </ul>
+                  </b:includable>
+                </b:widget>
+              </b:section>
+            </div>
+
+            <div class='footer-col'>
+              <h4 class='footer-heading'>Connect</h4>
+              <b:section class='footer-social' id='footer-social' maxwidgets='1' showaddelement='yes'>
+                <b:widget id='LinkList2' locked='false' title='Social Links' type='LinkList' visible='true'>
+                  <b:includable id='main'>
+                    <ul>
+                      <b:loop values='data:links' var='link'>
+                        <li><a expr:href='data:link.target' rel='nofollow noopener' target='_blank'><data:link.name/></a></li>
+                      </b:loop>
+                    </ul>
+                  </b:includable>
+                </b:widget>
+              </b:section>
+            </div>
+
+          </div>
+
+          <div class='footer-bottom'>
+            &#169; <script type='text/javascript'>document.write(new Date().getFullYear())</script>
+            <a expr:href='data:blog.homepageUrl'><data:blog.title/></a>. All Rights Reserved.
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script type='text/javascript'>
+    //<![CDATA[
+    // Back to Top visibility
+    window.addEventListener('scroll', function() {
+      var btn = document.getElementById('backToTop');
+      if (window.scrollY > 400) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    });
+
+    // Mobile menu close on link click
+    document.querySelectorAll('#navMenu a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('navMenu').classList.remove('active');
+      });
+    });
+    //]]>
+    </script>
+
+  </body>
+</html>
