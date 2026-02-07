@@ -924,7 +924,7 @@
                           <!-- Category label -->
                           <b:if cond='data:post.labels'>
                             <b:loop values='data:post.labels' var='label'>
-                              <b:if cond='data:label.isLast == &quot;true&quot;'>
+                              <b:if cond='data:label.isFirst == &quot;true&quot;'>
                                 <a class='post-category' expr:href='data:label.url'><data:label.name/></a>
                               </b:if>
                             </b:loop>
@@ -1014,13 +1014,11 @@
                         <b:if cond='data:newerPageUrl'>
                           <a expr:href='data:newerPageUrl'>
                             <div class='nav-label'>&#8592; Newer Post</div>
-                            <span>Next Article</span>
                           </a>
                         </b:if>
                         <b:if cond='data:olderPageUrl'>
                           <a expr:href='data:olderPageUrl'>
                             <div class='nav-label'>Older Post &#8594;</div>
-                            <span>Previous Article</span>
                           </a>
                         </b:if>
                       </div>
@@ -1086,7 +1084,7 @@
                 <div class='comment-form'>
                   <a name='comment-form'/>
                   <b:if cond='data:mobile'>
-                    <p>Use the desktop version to leave a comment.</p>
+                    <a expr:href='data:post.addCommentUrl' rel='nofollow'>Post a Comment</a>
                   <b:else/>
                     <iframe allowtransparency='true' class='blogger-iframe-color498' frameborder='0' height='310' id='comment-editor' name='comment-editor' src='' width='100%'/>
                     <data:post.cmtfpIframe/>
